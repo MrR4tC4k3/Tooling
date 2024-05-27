@@ -1,0 +1,60 @@
+C2 Frameworks
+
+HAVOC https://github.com/HavocFramework/
+
+git clone https://github.com/HavocFramework/Havoc.git
+cd Havoc
+#Install the dependencies
+sudo apt install -y git build-essential apt-utils cmake libfontconfig1 libglu1-mesa-dev libgtest-dev libspdlog-dev libboost-all-dev libncurses5-dev libgdbm-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev libbz2-dev mesa-common-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5websockets5 libqt5websockets5-dev qtdeclarative5-dev golang-go qtbase5-dev libqt5websockets5-dev python3-dev libboost-all-dev mingw-w64 nasm
+#Build Team Server
+cd teamserver
+go mod download golang.org/x/sys
+go mod download github.com/ugorji/go
+cd ..
+# Install musl Compiler & Build Binary (From Havoc Root Directory)
+make ts-build
+# Build the client Binary (From Havoc Root Directory)
+make client-build
+#Configure Teamserver config file havoc.yaotl
+# Run the teamserver
+./havoc server --profile ./profiles/havoc.yaotl -v --debug
+# Run the client
+./havoc client
+
+
+
+MYTHIC https://github.com/its-a-feature/
+
+git clone https://github.com/its-a-feature/Mythic.git
+cd Mythic
+sudo ./install_docker_kali.sh
+#install make
+sudo apt-get install make
+#create the binary file
+sudo make
+#Apollo agent
+sudo ./mythic-cli install github https://github.com/MythicAgents/Apollo
+#Athena agent
+sudo ./mythic-cli install github https://github.com/MythicAgents/Athena
+#installing the HTTP profile
+sudo ./mythic-cli install github https://github.com/MythicC2Profiles/http
+#Edit Teamserver config .etc
+#starting the mythic service
+sudo ./mythic-cli start
+#checking in on the mythic service
+sudo ./mythic-cli status
+#extract admin crednetials
+grep -B 1 mythic_admin .env
+firefox https://127.0.0.1:7443
+#more profiles at https://github.com/MythicC2Profiles
+#more agents at https://github.com/MythicAgents
+
+
+
+Deimos https://github.com/DeimosC2/
+
+#Download pre-compiled Go binary from https://github.com/DeimosC2/DeimosC2/releases 
+chmod u+x./DeimosC2 && ./DeimosC2
+#Follow prompts (likely N, Y, N)
+#Navigate to https://localhost:8443/
+#Create Username and Password
